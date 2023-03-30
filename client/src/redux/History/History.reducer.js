@@ -1,16 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,current } from "@reduxjs/toolkit";
 
 const initialState = {
     userHistory : [],
     loading:"false",
     error:""
 }
+const deleteHistory = (id,history) =>{
+    let histories = []
+    console.log(history,id)
+    histories = history.filter((history1) => history1._id !== id)
+    console.log(histories)
+    return histories
+}
 const historySlice = new createSlice({
     name:"history",
     initialState,
     reducers:{
         historyRequest:(state) =>{
-            state.userHistory = []
             state.loading = true
         },
         historyAddSuccess:(state,action) =>{
@@ -21,6 +27,11 @@ const historySlice = new createSlice({
             state.userHistory = action.payload.history
             state.loading = false
         },
+        historyDeleteSuccess:(state,action) =>{
+            let history = deleteHistory(action.payload,current(state.userHistory))
+            state.userHistory = history
+            state.loading = false
+        },
         historyFail: (state,action) =>{
             state.loading = false
             state.error = action.payload.message
@@ -28,6 +39,6 @@ const historySlice = new createSlice({
     }
 })
 
-export const {historyRequest,historyAddSuccess,historyGetSuccess,historyFail} = historySlice.actions
+export const {historyRequest,historyAddSuccess,historyGetSuccess,historyDeleteSuccess,historyFail} = historySlice.actions
 
 export default historySlice.reducer

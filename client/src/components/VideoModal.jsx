@@ -11,7 +11,6 @@ export default function VideoModal({open,setOpen,code,title}) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const handleClick = (e) =>{
     e.preventDefault()
-    console.log("Clicked")
   }
   
   const handleClose = () => {
@@ -36,8 +35,8 @@ export default function VideoModal({open,setOpen,code,title}) {
                 </button>
             </div>
         </DialogTitle>
-        <DialogContent onClick={handleClick}>
-            <iframe id='myframe' src={`https://www.youtube.com/embed/${code}?autoplay=1`} width={'516'} height={'350'} frameborder="0" onClick={handleClick} allow='autoplay'></iframe>
+        <DialogContent >
+            <iframe id='myframe' src={`https://www.youtube.com/embed/${code}?autoplay=1`}  allow='autoplay' className='iframeSt'></iframe>
             <h1 className='font-semibold text-lg py-3'>{title}</h1>
         </DialogContent>
 

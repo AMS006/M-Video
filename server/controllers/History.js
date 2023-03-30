@@ -29,3 +29,14 @@ exports.getAllUserHistory = async(req,res) =>{
       return res.status(500).json({message:error.message})  
     }
 }
+exports.deleteHistory = async(req,res) =>{
+    try {
+        const {id} = req.params
+        console.log(id)
+        if(id)
+            await HistoryModel.findByIdAndDelete(id)
+        return res.status(200).json({message:"History Deleted"})
+    } catch (error) {
+        return res.status(500).json({message:error.message})
+    }
+}

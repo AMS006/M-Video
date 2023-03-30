@@ -29,7 +29,6 @@ exports.getBucketOfUser = async(req,res) =>{
         const {_id} = await jwt.verify(token,process.env.SECRET_KEY)
         
         const userBuckets = await bucketModel.find({user:_id})
-        console.log(userBuckets)
         return res.status(200).json({userBuckets})
     } catch (error) {
         return res.status(500).json({message:error.message})

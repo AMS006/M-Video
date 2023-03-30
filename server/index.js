@@ -13,14 +13,17 @@ app.use(cookieparser())
 dotenv.config()
 
 app.use(cors({
-    origin:'http://localhost:4000', 
-    methods: ['GET', 'PUT', 'POST','DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-    credentials: true
+    origin:'http://localhost:3000',  
+    credentials: true,
+    optionSuccessStatus:200
 }))
-app.get('/',(req,res)=>{
-    res.json({message:"Server Is Running"})
-})
+// app.get("/", (req, res) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*")
+//     res.setHeader("Access-Control-Allow-Credentials", "true");
+//     res.setHeader("Access-Control-Max-Age", "1800");
+//     res.setHeader("Access-Control-Allow-Headers", "content-type");
+//     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+//      });
 app.use('/user',user)
 app.use('/bucket',bucket)
 app.use('/card',card)

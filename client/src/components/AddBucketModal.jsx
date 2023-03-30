@@ -38,7 +38,7 @@ export default function AddBucketModal({open,setOpen}) {
           {"Add New Bucket"}
         </DialogTitle>
         <hr />
-          <form action="" className='flex flex-col w-96 gap-4' onSubmit={handleSubmit}>
+          <form action="" className='flex flex-col md:w-96 w-full gap-4' onSubmit={handleSubmit}>
         <DialogContent>
             <div className='flex flex-col gap-1 w-full'>
                 <label htmlFor="title" className='font-semibold'>Enter Title For Bucket</label>

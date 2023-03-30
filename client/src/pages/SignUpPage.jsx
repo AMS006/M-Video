@@ -6,7 +6,7 @@ import {GrSecure} from 'react-icons/gr'
 import {FiUser,FiPhone} from 'react-icons/fi'
 import { useState } from 'react'
 import { signUp } from '../redux/User/User.action'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 function SignUpPage() {
@@ -15,21 +15,21 @@ function SignUpPage() {
   const [password,setPassword] = useState("")
   const [confirmPassword,setConfirmPassword] = useState("")
   const [passwordMatch,setPasswordMatch] = useState(true)
+  const user = useSelector((state) => state.user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleSubmit = (e) =>{
     e.preventDefault()
     if(password !== confirmPassword){
       setPasswordMatch(false)
     }
     else{
-      const user = {
+      const user1 = {
         name,
         email,
         password,
       }
-      dispatch(signUp(user));
+      dispatch(signUp(user1));
       setEmail("")
       setName("")
       setPassword("")

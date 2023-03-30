@@ -6,7 +6,7 @@ import HistoryPage from './HistoryPage'
 
 function TabPage() {
   const {tab} = useParams()
-  console.log(tab)
+
   return (
     <>
       {tab === "mybuckets" && <MyBuckets />}

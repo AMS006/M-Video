@@ -24,7 +24,7 @@ function SignInPage() {
     if(user && user.user){
       navigate('/')
     }else if(user && user.error){
-    //   alert.show(user.error)
+      window.alert(user.error)
     }
   },[user])
 

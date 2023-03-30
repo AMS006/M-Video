@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import MyBucketCard from "./components/MyBucketCard";
 import BucketsPage from "./pages/BucketsPage";
@@ -6,7 +8,12 @@ import MyBucketPage from "./pages/MyBucketPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import TabPage from "./pages/TabPage";
+import { getUserDetails } from "./redux/User/User.action";
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getUserDetails())
+  },[])
   return (
     <BrowserRouter >
       <Routes>

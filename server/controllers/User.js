@@ -60,10 +60,10 @@ exports.logoutUser = async(req,res) =>{
 }
 exports.getUserDetails = async(req,res) =>{
     try {
-      if(!req.user)
-        return res.status(400).json({message:"Invalid request"})
-      const user = await userModel.findOne(req.user._id);
-  
+    const {token} = req.cookies
+    const {_id} = await jwt.verify(token,process.env.SECRET_KEY)
+    const user = await userModel.findById(_id);
+        
       if(!user)
         return res.status(404).json({message:"No user found"});
       return res.status(200).json({user});

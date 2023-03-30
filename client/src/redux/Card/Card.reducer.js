@@ -12,6 +12,16 @@ const deleteCard = (id,card) =>{
 
     return cards
 }
+const updateCard = (updatedCard,cards) =>{
+    let card1 = []
+    card1 = cards.map((card) => {
+        if(card._id === updatedCard._id){
+            return updatedCard
+        }else
+            return card
+        })
+    return card1
+}
 const cardSlice = new createSlice({
     name:"Card",
     initialState,
@@ -27,6 +37,11 @@ const cardSlice = new createSlice({
             state.loading = false
             state.card.push(action.payload.card)
         },
+        updateCardSuccess:(state,action) =>{
+            state.loading = false
+            let card = updateCard(action.payload.card,current(state.card))
+            state.card = card
+        },
         cardDeleteSuccess:(state,action) =>{
             let card = deleteCard(action.payload,current(state.card))
             state.card = card
@@ -39,6 +54,6 @@ const cardSlice = new createSlice({
         }
     }
 })
-export const {cardRequest,cardSuccess,cardFail,addCardSuccess,cardDeleteSuccess} = cardSlice.actions
+export const {cardRequest,cardSuccess,cardFail,addCardSuccess,updateCardSuccess,cardDeleteSuccess} = cardSlice.actions
 
 export default cardSlice.reducer

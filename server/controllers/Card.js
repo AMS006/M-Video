@@ -22,8 +22,10 @@ exports.getAllCards = async(req,res) =>{
 exports.updateCard = async(req,res) =>{
     try {
         const {id} = req.params
-        const {code,title,bucket} = req.body
-        const card = await cardModel.findByIdAndUpdate(id,{$set:{code,title,bucket}},{new:true})
+        const {code,title,bucket1} = req.body
+
+        
+        const card = await cardModel.findByIdAndUpdate(id,{$set:{code,title,bucket:bucket1}},{new:true})
 
         return res.status(200).json({card})
     } catch (error) {

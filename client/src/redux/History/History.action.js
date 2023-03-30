@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { historyAddSuccess, historyFail, historyGetSuccess, historyRequest } from './History.reducer'
+import { historyAddSuccess, historyDeleteSuccess, historyFail, historyGetSuccess, historyRequest } from './History.reducer'
 
 export const addUserHistory = (id) => async(dispatch) =>{
     try {
@@ -23,5 +23,17 @@ export const getAllUserHistory = () => async(dispatch) =>{
         dispatch(historyGetSuccess(history.data))
     } catch (error) {
         dispatch(historyFail(error))
+    }
+}
+export const deleteHistory = (id) => async(dispatch) =>{
+    try {
+        dispatch(historyRequest())
+        await axios({
+            method:"DELETE",
+            url:`http://localhost:4000/history/${id}`
+        })
+        dispatch(historyDeleteSuccess(id))
+    } catch (error) {
+        
     }
 }

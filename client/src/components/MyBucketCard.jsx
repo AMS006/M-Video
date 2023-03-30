@@ -5,7 +5,7 @@ function MyBucketCard({img,title,id}) {
   return (
     <Link className='border shadow rounded-lg overflow-hidden' to={`/mybuckets/${id}`}>
         <div className='w-full relative'>
-            <img src={img} alt={title} className='h-44 w-full' />
+            <img src={img} alt={title} className='sm:h-44 h-52 w-full' />
             <span className='absolute top-4 right-1 text-white text-2xl'>
                 <RiPlayList2Fill />
             </span>
