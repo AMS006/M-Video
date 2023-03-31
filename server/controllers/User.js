@@ -58,7 +58,8 @@ exports.logoutUser = async(req,res) =>{
             maxAge: 0,
             secure: true
         }
-        return res.status(200).cookie('token',null,option).json({message:"Logout Successfully"})
+        
+        res.cookie('token',null,option).json({message:"Logout Successfully"})
     } catch (error) {
         return res.status(500).json({message:error.message});
     }
